@@ -25,6 +25,18 @@ class Client(db.Model):
         unique=True,
         nullable=False
     )
+    adresa = db.Column(
+        db.String(64),
+        index=False,
+        unique=True,
+        nullable=False
+    )
+    telefon = db.Column(
+        db.String(64),
+        index=False,
+        unique=True,
+        nullable=False
+    )
     adresa_ip = db.Column(
         db.String(64),
         index=False,

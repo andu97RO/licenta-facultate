@@ -1,0 +1,30 @@
+{% extends "layot.jinja2" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Prenume</th>
+                <th scope="col">Nume</th>
+                <th scope="col">Localitate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clienti %}
+                <tr>
+                <th scope="row">{{ client.id }}</th>
+                <td>{{ client.prenume }}</td>
+                <td>{{ client.nume }}</td>
+                <td>{{ client.localitate }}</td>
+                <td>{{ client.adresa_ip }}</td>
+                <td>{{ client.abonament }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+{% enblock %}
