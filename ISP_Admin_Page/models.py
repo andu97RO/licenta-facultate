@@ -10,44 +10,37 @@ class Client(db.Model):
     prenume = db.Column(
         db.String(64),
         index=False,
-        unique=True,
         nullable=False
     )
     nume = db.Column(
         db.String(64),
         index=False,
-        unique=True,
         nullable=False
     )
     localitate = db.Column(
         db.String(64),
         index=False,
-        unique=True,
-        nullable=False
+        nullable=True
     )
     adresa = db.Column(
         db.String(64),
         index=False,
-        unique=True,
-        nullable=False
+        nullable=True
     )
     telefon = db.Column(
         db.String(64),
         index=False,
-        unique=True,
-        nullable=False
+        nullable=True
     )
     adresa_ip = db.Column(
         db.String(64),
         index=False,
-        unique=True,
-        nullable=False
+        nullable=True
     )
     abonament = db.Column(
         db.String(64),
         index=False,
-        unique=True,
-        nullable=False
+        nullable=True
     )
 
     def __repr__(self):
