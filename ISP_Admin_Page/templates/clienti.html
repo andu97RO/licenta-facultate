@@ -19,19 +19,27 @@
                     <th scope="col">Telefon</th>
                     <th scope="col">Adresa IP</th>
                     <th scope="col">Abonament</th>
+                    <th scope="col">Actiuni</th>
                 </tr>
             </thead>
             <tbody>
-                {% for client in clienti %}
+                {% for client in clienti.items %}
                 <tr>
                     <th scope="row">{{ client.id }}</th>
-                    <td>{{ client.prenume }}</td>
-                    <td>{{ client.nume }}</td>
+                    <td><a href="{{ url_for('clienti_arata', id_client=client.id) }}">{{ client.prenume }}</a></td>
+                    <td><a href="{{ url_for('clienti_arata', id_client=client.id) }}">{{ client.nume }}</a></td>
                     <td>{{ client.localitate }}</td>
                     <td>{{ client.adresa }}</td>
                     <td>{{ client.telefon }}</td>
                     <td>{{ client.adresa_ip }}</td>
                     <td>{{ client.abonament }}</td>
+                    <td>
+                        <a href="{{ url_for('clienti_modifica', id_client=client.id) }}"><i class="fas fa-edit"></i></a>
+                        <a href="{{ url_for('clienti_sterge', id_client=client.id) }}"><i
+                                class="fas fa-trash-alt"></i></a>
+                        <a href="{{ url_for('factura', id_client=client.id) }}"><i
+                                class="fas fa-file-invoice-dollar"></i></a>
+                    </td>
                 </tr>
                 {% else %}
                 <tr>
@@ -40,6 +48,25 @@
                 {% endfor %}
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if clienti.has_prev %}
+                <li class="page-item"> <a class="page-link"
+                        href="{{ url_for('clienti', page=clienti.prev_num) }}">Previous</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Previous</a></li>
+                {% endif %}
+
+
+                {% if clienti.has_next %}
+                <li class="page-item"> <a class="page-link" href="{{ url_for('clienti', page=clienti.next_num) }}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Next</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
     </div>
 </div>
 {% endblock %}

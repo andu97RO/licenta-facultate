@@ -22,6 +22,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
 </head>
 
 <body class="{{template}}">
@@ -38,7 +39,7 @@
                     <a class="nav-link" href="#">Acasa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('clienti') }}">Clienti</a>
+                    <a class="nav-link" href="{{ url_for('clienti', page=1) }}">Clienti</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Abonamente</a>
