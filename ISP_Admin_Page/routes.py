@@ -74,6 +74,6 @@ def clienti_adauga():
                             abonament=form.abonament.data)
         db.session.add(client_nou)
         db.session.commit()
-        return redirect(url_for('clienti'))
+        return redirect(url_for('clienti', page=1))
 
     return render_template('clientiform.html', form=form)
