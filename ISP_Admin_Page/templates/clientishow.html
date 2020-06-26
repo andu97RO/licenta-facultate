@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="col-8">
+            <h1>{{ client.prenume }} {{ client.nume }}</h1>
+        </div>
+        <div class="col-4">
+            <div class="col text-right">
+                <a href="{{ url_for('clienti_modifica', id_client=client.id) }}" class="btn btn-info" role="button">Editeaza client</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h5>Prenume</h5>
+                        </td>
+                        <td>{{ client.prenume }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Nume</h5>
+                        </td>
+                        <td>{{ client.nume }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Localitate</h5>
+                        </td>
+                        <td>{{ client.localitate }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Adresa</h5>
+                        </td>
+                        <td>{{ client.adresa }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Telefon</h5>
+                        </td>
+                        <td>{{ client.telefon }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Adresa IP</h5>
+                        </td>
+                        <td>{{ client.adresa_ip }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Abonament</h5>
+                        </td>
+                        <td>{{ client.abonament }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

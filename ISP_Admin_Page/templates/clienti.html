@@ -25,7 +25,7 @@
             <tbody>
                 {% for client in clienti.items %}
                 <tr>
-                    <th scope="row">{{ client.id }}</th>
+                    <th scope="row">{{ loop.index0 + 1 }}</th>
                     <td><a href="{{ url_for('clienti_arata', id_client=client.id) }}">{{ client.prenume }}</a></td>
                     <td><a href="{{ url_for('clienti_arata', id_client=client.id) }}">{{ client.nume }}</a></td>
                     <td>{{ client.localitate }}</td>
@@ -35,7 +35,7 @@
                     <td>{{ client.abonament }}</td>
                     <td>
                         <a href="{{ url_for('clienti_modifica', id_client=client.id) }}"><i class="fas fa-edit"></i></a>
-                        <a href="{{ url_for('clienti_sterge', id_client=client.id) }}"><i
+                        <a href="#" class="client_sterge" id="{{ client.id }}"><i
                                 class="fas fa-trash-alt"></i></a>
                         <a href="{{ url_for('factura', id_client=client.id) }}"><i
                                 class="fas fa-file-invoice-dollar"></i></a>
@@ -69,4 +69,5 @@
         </nav>
     </div>
 </div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% endblock %}

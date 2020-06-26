@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="adaugaClientHeading" style="margin-top: 50px; margin-bottom: 50px;">
+        <h2>Editeaza {{ client.prenume }} {{client.nume }}</h2>
+        <hr>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('clienti_modifica', id_client=client.id) }}">
+                {{ form.csrf_token }}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        {{ wtf.form_field(form.prenume, class="form-control", value=client.prenume) }}
+                        {% for error in form.prenume.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ wtf.form_field(form.nume, class="form-control", value=client.nume) }}
+                        {% for error in form.nume.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.adresa, class="form-control", value=client.adresa) }}
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.localitate, class="form-control", value=client.localitate) }}
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.telefon, class="form-control", value=client.telefon) }}
+                </div>
+                <div class="form-group">
+                    {{ wtf.form_field(form.abonament, class="form-control", value=client.abonament) }}
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-primary">Salveaza</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

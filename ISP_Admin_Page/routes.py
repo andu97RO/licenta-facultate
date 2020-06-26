@@ -10,6 +10,7 @@ from .models import Client, db
 
 from flask_bootstrap import Bootstrap
 
+import json
 
 Bootstrap(app)
 
@@ -39,21 +40,42 @@ def clienti(page=1):
     )
 
 
-@app.route('/clienti/afiseaza/<id_client>')
-@app.route('/clienti/modifica/<id_client>', methods=['GET'])
+@app.route('/clienti/modifica/<id_client>', methods=['POST', 'GET'])
 def clienti_modifica(id_client):
-    pass
+    form = AdaugaClientForm()
+
+    client = Client.query.get(id_client)
+
+    if form.validate_on_submit():
+
+        update_dict = {"prenume": form.prenume.data, "nume": form.nume.data,
+                       "localitate": form.localitate.data,
+                       "adresa": form.adresa.data, "telefon": form.telefon.data, 
+                       "abonament": form.abonament.data}
+
+        db.session.query(Client).filter(
+            Client.id == id_client).update(update_dict)
+        db.session.commit()
+        return redirect(url_for('clienti_arata', id_client=id_client))
+
+    return render_template('clientiedit.html', id_client=id_client, form=form, client=client)
 
 
 @app.route('/clienti/arata/<id_client>', methods=['GET'])
 def clienti_arata(id_client):
-    pass
+
+    client = Client.query.get(id_client)
+    print(client)
+    return render_template('clientishow.html', client=client, title="Arata client")
 
 
 @app.route('/clienti/sterge/<id_client>', methods=['GET'])
 def clienti_sterge(id_client):
-    pass
+    
+    Client.query.filter(Client.id == id_client).delete()
+    db.session.commit()
 
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/factura/<id_client>', methods=['GET'])
 def factura(id_client):
@@ -70,7 +92,6 @@ def clienti_adauga():
                             localitate=form.localitate.data,
                             adresa=form.adresa.data,
                             telefon=form.telefon.data,
-                            adresa_ip=form.adresa_ip.data,
                             abonament=form.abonament.data)
         db.session.add(client_nou)
         db.session.commit()
