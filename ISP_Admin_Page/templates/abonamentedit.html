@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="adaugaClientHeading" style="margin-top: 50px; margin-bottom: 50px;">
+        <h2>Editeaza un abonament</h2>
+        <hr>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('abonament_modifica', id_abonament=id_abonament) }}">
+                {{ form.csrf_token }}
+                
+                <div class="form-group">
+                    {{ wtf.form_field(form.valoare, class="form-control", value=abonament.valoare) }}
+                    {% for error in form.valoare.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ wtf.form_field(form.vitezamin, class="form-control", value=abonament.vitezamin) }}
+                    {% for error in form.vitezamin.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+                    
+                <div class="form-group">
+                    {{ wtf.form_field(form.vitezamax, class="form-control", value=abonament.vitezamax) }}
+                    {% for error in form.vitezamax.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-primary">Salveaza</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

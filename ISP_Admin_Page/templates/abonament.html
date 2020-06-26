@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="col text-right">
+            <a href="{{ url_for('abonament_adauga') }}" class="btn btn-info" role="button">Adauga abonament</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Valoare (RON)</th>
+                    <th scope="col">Viteza minima</th>
+                    <th scope="col">Viteza maxima</th>
+                    <th scope="col">Actiuni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ab in abonament.items %}
+                <tr>
+                    <th scope="row">{{ loop.index0 + 1 }}</th>
+                    <td><a href="{{ url_for('abonament_arata', id_abonament=ab.id) }}">{{ ab.valoare }}</a></td>
+                    <td><a href="{{ url_for('abonament_arata', id_abonament=ab.id) }}">{{ ab.vitezamin }}</a></td>
+                    <td><a href="{{ url_for('abonament_arata', id_abonament=ab.id) }}">{{ ab.vitezamax }}</a></td>
+                    <td>
+                        <a href="{{ url_for('abonament_modifica', id_abonament=ab.id) }}"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="abonament_sterge" id="{{ ab.id }}"><i
+                                class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8">Nu existsa intrari in tabela!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if abonament.has_prev %}
+                <li class="page-item"> <a class="page-link"
+                        href="{{ url_for('abonament', page=abonament.prev_num) }}">Previous</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Previous</a></li>
+                {% endif %}
+
+
+                {% if abonament.has_next %}
+                <li class="page-item"> <a class="page-link" href="{{ url_for('abonament', page=abonament.next_num) }}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Next</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

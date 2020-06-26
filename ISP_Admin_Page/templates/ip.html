@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="col text-right">
+            <a href="{{ url_for('ip_adauga') }}" class="btn btn-info" role="button">Adauga IP</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Adresa IP</th>
+                    <th scope="col">Nume</th>
+                    <th scope="col">Prenume</th>
+                    <th scope="col">Activ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in ip.items %}
+                <tr>
+                    <th scope="row">{{ loop.index0 + 1 }}</th>
+                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.valoare }}</a></td>
+                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.vitezamin }}</a></td>
+                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.vitezamax }}</a></td>
+                    <td>
+                        <a href="{{ url_for('ip_modifica', id_ip=i.id) }}"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="ip_sterge" id="{{ i.id }}"><i
+                                class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8">Nu existsa intrari in tabela!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if ip.has_prev %}
+                <li class="page-item"> <a class="page-link"
+                        href="{{ url_for('ip', page=ip.prev_num) }}">Previous</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Previous</a></li>
+                {% endif %}
+
+
+                {% if ip.has_next %}
+                <li class="page-item"> <a class="page-link" href="{{ url_for('ip', page=ip.next_num) }}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item"><a class="page-link btn disabled" href="#">Next</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

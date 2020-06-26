@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="col-8">
+            <h1>{{ abonament.valoare }}</h1>
+        </div>
+        <div class="col-4">
+            <div class="col text-right">
+                <a href="{{ url_for('abonament_modifica', id_abonament=abonament.id) }}" class="btn btn-info" role="button">Editeaza abonament</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h5>Valoare (in RON)</h5>
+                        </td>
+                        <td>{{ abonament.valoare }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Nume</h5>
+                        </td>
+                        <td>{{ abonament.nume }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Prenume</h5>
+                        </td>
+                        <td>{{ abonament.prenume }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
