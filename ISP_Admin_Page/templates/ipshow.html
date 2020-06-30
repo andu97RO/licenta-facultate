@@ -4,16 +4,33 @@
 <div class="container">
     <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
         <div class="col-8">
-            <h1>Abonament {{ abonament.valoare }} RON</h1>
+            <h1>{{ ip.adresa_ip }}</h1>
         </div>
         <div class="col-4">
             <div class="col text-right">
-                <a href="{{ url_for('abonament_modifica', id_abonament=abonament.id) }}" class="btn btn-info" role="button">Editeaza abonament</a>
+                <a href="{{ url_for('ip_modifica', id_ip=ip.id) }}" class="btn btn-info"
+                    role="button">Editeaza adresa IP</a>
             </div>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">General</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h5>Adresă IP:</h5>
+                        </td>
+                        <td>{{ ip.adresa_ip }}</td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -24,41 +41,21 @@
                 <tbody>
                     <tr>
                         <td>
-                            <h5>Valoare (in RON):</h5>
+                            <h5>Client:</h5>
                         </td>
-                        <td>{{ abonament.valoare }}</td>
+                        <td>{{ ip.client }}</td>
                     </tr>
                     <tr>
                         <td>
-                            <h5>Viteza minimă garantată:</h5>
+                            <h5>Activ:</h5>
                         </td>
-                        <td>{{ abonament.nume }}</td>
-                    </tr>
-                    <tr>
                         <td>
-                            <h5>Viteza maximă negarantată:</h5>
+                            {% if ip.activ == 'DA' %}
+                            <img src="{{ url_for('static', filename='img/tick.png') }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='img/delete.png') }}">
+                            {% endif %}
                         </td>
-                        <td>{{ abonament.prenume }}</td>
-                    </tr>
-                </tbody>
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Date Înregistrare</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <h5>Data creării:</h5>
-                        </td>
-                        <td>{{ abonament.valoare }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5>Data modificării:</h5>
-                        </td>
-                        <td>{{ abonament.nume }}</td>
                     </tr>
                 </tbody>
             </table>

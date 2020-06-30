@@ -79,15 +79,10 @@ class IP(db.Model):
         index=False,
         nullable=False
     )
-    nume = db.Column(
+    client = db.Column(
         db.String(64),
         index=False,
         nullable=False
-    )
-    prenume = db.Column(
-        db.String(64),
-        index=False,
-        nullable=True
     )
     activ = db.Column(
         db.String(64),

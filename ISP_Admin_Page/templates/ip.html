@@ -13,18 +13,24 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Adresa IP</th>
-                    <th scope="col">Nume</th>
-                    <th scope="col">Prenume</th>
+                    <th scope="col">Client</th>
                     <th scope="col">Activ</th>
+                    <th scope="col">Actiuni</th>
                 </tr>
             </thead>
             <tbody>
                 {% for i in ip.items %}
                 <tr>
                     <th scope="row">{{ loop.index0 + 1 }}</th>
-                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.valoare }}</a></td>
-                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.vitezamin }}</a></td>
-                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.vitezamax }}</a></td>
+                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.adresa_ip }}</a></td>
+                    <td><a href="{{ url_for('ip_arata', id_ip=i.id) }}">{{ i.client }}</a></td>
+                    <td>
+                    {% if i.activ == 'DA' %}
+                    <img src="{{ url_for('static', filename='img/tick.png') }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/delete.png') }}">
+                    {% endif %}
+                    </td>
                     <td>
                         <a href="{{ url_for('ip_modifica', id_ip=i.id) }}"><i class="fas fa-edit"></i></a>
                         <a href="#" class="ip_sterge" id="{{ i.id }}"><i

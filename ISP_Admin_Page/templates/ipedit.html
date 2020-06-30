@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="adaugaClientHeading" style="margin-top: 50px; margin-bottom: 50px;">
+        <h2>Editează IP</h2>
+        <hr>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('ip_modifica', id_ip=id_ip) }}">
+                {{ form.csrf_token }}
+                
+                <div class="form-group">
+                    {{ wtf.form_field(form.adresa_ip, class="form-control", value=ip.adresa_ip) }}
+                    {% for error in form.adresa_ip.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ wtf.form_field(form.client, class="form-control", value=ip.client) }}
+                    {% for error in form.client.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ wtf.form_field(form.activ, class="form-control") }}
+                </div>
+
+                <div class="row">
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-primary">Salveaza</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

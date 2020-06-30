@@ -27,7 +27,7 @@
 </head>
 
 <body class="{{template}}">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">ISP Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
                     <a class="nav-link" href="{{ url_for('abonament', page=1) }}">Abonamente</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">IP-uri</a>
+                    <a class="nav-link" href="{{ url_for('ip', page=1) }}">IP-uri</a>
                 </li>
             </ul>
         </div>
